@@ -1,0 +1,36 @@
+.roboflow-manager * {
+    color: black;
+    font-size: 13px;
+}
+
+.roboflow-manager {
+    padding: 13px;
+}
+
+.toolbar {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.logs {
+    font-size: 10px;
+    overflow-y: auto;
+}
+
+.restart-button {
+    margin-left: auto;
+    background-color: oklch(43.8% 0.218 303.724);
+    color: white;
+    font-weight: medium;
+    border: none;
+    padding: 4px 8px;
+}
+
+.restart-button:disabled {
+    background-color: oklch(38.669% 0.18957 304.226);
+}
