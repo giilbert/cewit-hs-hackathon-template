@@ -124,13 +124,16 @@ class UltralyticsClient:
         raw = self.infer_raw(image, model=model)
         return [
             {
-                "object": prediction["class"],
+                "class": prediction["class"],
+                "class_id": prediction["class_id"],
                 "confidence": prediction["confidence"],
-                "bbox": prediction["bbox"],
-                "x": prediction["x"],
-                "y": prediction["y"],
-                "width": prediction["width"],
-                "height": prediction["height"],
+                "bbox": prediction.get(
+                    "bbox", {"x1": 0.0, "y1": 0.0, "x2": 0.0, "y2": 0.0}
+                ),
+                "x": prediction.get("x", 0.0),
+                "y": prediction.get("y", 0.0),
+                "width": prediction.get("width", 0.0),
+                "height": prediction.get("height", 0.0),
             }
             for prediction in raw.get("predictions", [])
         ]
