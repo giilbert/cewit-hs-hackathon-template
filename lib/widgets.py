@@ -130,10 +130,10 @@ class UltralyticsClient:
                 "bbox": prediction.get(
                     "bbox", {"x1": 0.0, "y1": 0.0, "x2": 0.0, "y2": 0.0}
                 ),
-                "x": prediction.get("x", 0.0),
-                "y": prediction.get("y", 0.0),
-                "width": prediction.get("width", 0.0),
-                "height": prediction.get("height", 0.0),
+                "x": prediction["x"],
+                "y": prediction["y"],
+                "width": prediction["width"],
+                "height": prediction["height"],
             }
             for prediction in raw.get("predictions", [])
         ]
@@ -228,6 +228,8 @@ class UltralyticsManager(anywidget.AnyWidget):
         self._start_ram_monitor_worker()
 
         self.on_msg(self._handle_frontend_message)
+
+        time.sleep(1)  # Avoid weird race condition
 
     # Custom logging handler to write logs into the traitlet shown in the widget.
     class _LogStream:
