@@ -1,24 +1,12 @@
 services:
-  inference-server:
-    container_name: inference-server
-    image: roboflow/roboflow-inference-server-jetson-6.2.0:latest
-
-    read_only: true
-    ports:
-      - "9001:9001"
-
-    volumes:
-      - "${HOME}/.inference/cache:/tmp:rw"
-
+  inference:
+    build: .
+    image: yolo-inference:latest
     runtime: nvidia
-
-    # Optionally: uncomment the following lines to enable TensorRT:
-    # environment:
-    #   ONNXRUNTIME_EXECUTION_PROVIDERS: "[TensorrtExecutionProvider,CUDAExecutionProvider,CPUExecutionProvider]"
-
-    security_opt:
-      - no-new-privileges
-    cap_drop:
-      - ALL
-    cap_add:
-      - NET_BIND_SERVICE
+    ports:
+      - "18001:9001"
+    volumes:
+      - ./models:/app/models
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all

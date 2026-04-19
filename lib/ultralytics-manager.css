@@ -1,9 +1,9 @@
-.roboflow-manager * {
+.ultralytics-manager * {
     color: black;
     font-size: 13px;
 }
 
-.roboflow-manager {
+.ultralytics-manager {
     padding: 13px;
 }
 
@@ -22,15 +22,22 @@
     overflow-y: auto;
 }
 
-.restart-button {
-    margin-left: auto;
-    background-color: oklch(43.8% 0.218 303.724);
+.restart-button,
+.stop-start-button {
+    background-color: #111111;
     color: white;
     font-weight: medium;
     border: none;
     padding: 4px 8px;
+    cursor: pointer;
 }
 
-.restart-button:disabled {
-    background-color: oklch(38.669% 0.18957 304.226);
+.restart-button:disabled,
+.stop-start-button:disabled {
+    background-color: #333333;
+    cursor: not-allowed;
+}
+
+.stop-start-button {
+    margin-left: auto;
 }
